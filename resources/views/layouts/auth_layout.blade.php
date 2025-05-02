@@ -10,7 +10,7 @@
   <link href="{{asset('css/bootstrap-extended.css')}}" rel="stylesheet" />
   <link href="{{asset('css/style.css')}}" rel="stylesheet" />
   <link href="{{asset('css/icons.css')}}" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link href="{{asset('css/fonts.css')}}" rel="stylesheet">
   <link href="{{asset('css/bootstrap-icons.css')}}" rel="stylesheet">
 
   <!-- loader-->
