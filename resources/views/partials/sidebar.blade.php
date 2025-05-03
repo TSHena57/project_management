@@ -49,7 +49,7 @@
                 <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Board</a>
              </div>
           </div>
-          <div class="tab-pane fade" id="pills-leads">
+          <div class="tab-pane fade {{Route::is('lead.*')  ? 'active show' : ''}}" id="pills-leads">
              <div class="list-group list-group-flush">
                 <div class="list-group-item">
                    <div class="d-flex w-100 justify-content-between">
