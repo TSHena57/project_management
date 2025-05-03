@@ -1,7 +1,4 @@
 @extends('layouts.app')
-@push('styles')    
-  <link href="{{asset('plugins/fancy-file-uploader/fancy_fileupload.css')}}" rel="stylesheet" />
-@endpush
 
 @section('content')
 <!--breadcrumb-->
@@ -54,36 +51,66 @@
                                 <div class="border p-3 rounded">
                                    <h6 class="mb-0 text-uppercase">Update Profile</h6>
                                    <hr>
-                                   <form class="row g-3" action="" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                      <div class="col-12">
-                                         <label class="form-label" for="name">Full Name</label>
-                                         <input type="text" class="form-control" name="name" id="name" value="{{auth()->user()->name}}">
-                                      </div>
-                                      <div class="col-12">
-                                         <label class="form-label" for="email">Email</label>
-                                         <input type="email" class="form-control" name="email" id="email" value="{{auth()->user()->email}}" readonly>
-                                      </div>
-                                      <div class="col-12">
-                                         <label class="form-label" for="mobile">Mobile</label>
-                                         <input type="text" class="form-control" name="mobile" id="mobile" value="{{auth()->user()->mobile}}">
-                                      </div>
-                                      <div class="col-12">
-                                          <label class="form-label" for="files">Avatar</label>
-                                          <input id="fancy-file-upload" type="file" name="files" id="files" accept=".jpg, .png, image/jpeg, image/png">
-                                      </div>
-                                      <div class="col-12">
-                                         <div class="d-grid">
-                                            <button type="submit" class="btn btn-primary">Update</button>
-                                         </div>
-                                      </div>
+                                   <form class="row g-3" action="{{route('profile_update')}}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="col-12">
+                                            <label class="form-label" for="name">Full Name</label>
+                                            <input type="text" class="form-control" name="name" id="name" value="{{auth()->user()->name}}">
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label" for="email">Email</label>
+                                            <input type="email" class="form-control" name="email" id="email" value="{{auth()->user()->email}}" readonly>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label" for="mobile">Mobile</label>
+                                            <input type="text" class="form-control" name="mobile" id="mobile" value="{{auth()->user()->mobile}}">
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label" for="formFile">Avatar</label>
+                                            <input class="form-control" type="file" id="formFile" name="file" accept=".jpg, .png, image/jpeg, image/png">
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-grid">
+                                                <button type="submit" class="btn btn-primary">Update</button>
+                                            </div>
+                                        </div>
                                    </form>
                                 </div>
                              </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="success-pills-password" role="tabpanel">
-                        <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="border p-3 rounded">
+                                   <h6 class="mb-0 text-uppercase">Update Password</h6>
+                                   <hr>
+                                   <form class="row g-3" action="{{route('password_update')}}" method="POST">
+                                        @csrf
+                                        <div class="col-12">
+                                            <label class="form-label">Current Password</label>
+                                            <input class="form-control" type="text" id="current_password" name="current_password" value="{{old('current_password')}}">
+                                            <div class="invalid-feedback"></div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">New Password</label>
+                                            <input class="form-control" type="password" id="password" name="password" value="{{old('password')}}">
+                                            <div class="invalid-feedback"></div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Confirm Password</label>
+                                            <input class="form-control" type="password" id="password_confirmation" name="password_confirmation" value="{{old('password_confirmation')}}">
+                                            <div class="invalid-feedback"></div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-grid">
+                                                <button type="submit" class="btn btn-primary">Update</button>
+                                            </div>
+                                        </div>
+                                   </form>
+                                </div>
+                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,9 +120,5 @@
 <!--end breadcrumb-->
 @endsection
 @push('scripts')
-    
-<script src="{{asset('plugins/fancy-file-uploader/jquery.ui.widget.js')}}"></script>
-<script src="{{asset('plugins/fancy-file-uploader/jquery.fileupload.js')}}"></script>
-<script src="{{asset('plugins/fancy-file-uploader/jquery.fancy-fileupload.js')}}"></script>
-<script src="{{asset('js/form-file-upload.js')}}"></script>
+
 @endpush

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -9,5 +10,13 @@ Route::get('/', function () {
 
 Auth::routes(['register' => false]);
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-Route::get('/profile-settings', [ProfileController::class, 'profile_setup'])->name('profile-settings');
+Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('/dashboard', 'index')->name('dashboard');
+    });
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('/profile-settings', 'profile_setup')->name('profile-settings');
+        Route::post('/profile-update', 'profile_update')->name('profile_update');
+        Route::post('/password-update', 'password_update')->name('password_update');
+    });
+});

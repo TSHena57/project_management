@@ -65,6 +65,7 @@
   <!--app-->
   <script src="{{asset('js/app.js')}}"></script>
   <script src="{{asset('js/toastr.min.js')}}"></script>
+  @include('partials.session_message')
   @stack('scripts')
 </body>
 
