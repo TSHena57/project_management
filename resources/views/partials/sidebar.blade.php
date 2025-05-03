@@ -60,16 +60,16 @@
                 <a href="{{route('lead.inactive_client')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>In-Active Client</a>
              </div>
           </div>
-          <div class="tab-pane fade" id="pills-hr">
+          <div class="tab-pane fade {{Route::is('employee.*')  ? 'active show' : ''}}" id="pills-hr">
              <div class="list-group list-group-flush">
                 <div class="list-group-item">
                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-0">Employee</h5>
+                      <h5 class="mb-0">Human Resource</h5>
                    </div>
                 </div>
                 <a href="{{route('designation.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Designation</a>
                 <a href="{{route('department.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Department</a>
-                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Employee</a>
+                <a href="{{route('employee.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Employee</a>
              </div>
           </div>
           <div class="tab-pane fade" id="pills-projects">

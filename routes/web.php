@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EmployeeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,18 +33,27 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::post('update/{id}', 'update')->name('lead.update');
         Route::post('delete', 'destroy')->name('lead.delete');
     });
-    Route::controller(DesignationController::class)->prefix('Human-resource/designation/')->group(function () {
+    Route::controller(DesignationController::class)->prefix('human-resource/designation/')->group(function () {
         Route::get('list', 'index')->name('designation.index');
         Route::post('store', 'store')->name('designation.store');
         Route::get('edit/{id}', 'edit')->name('designation.edit');
         Route::post('update/{id}', 'update')->name('designation.update');
         Route::post('delete', 'destroy')->name('designation.delete');
     });
-    Route::controller(DepartmentController::class)->prefix('Human-resource/department/')->group(function () {
+    Route::controller(DepartmentController::class)->prefix('human-resource/department/')->group(function () {
         Route::get('list', 'index')->name('department.index');
         Route::post('store', 'store')->name('department.store');
         Route::get('edit/{id}', 'edit')->name('department.edit');
         Route::post('update/{id}', 'update')->name('department.update');
         Route::post('delete', 'destroy')->name('department.delete');
+    });
+    Route::controller(EmployeeController::class)->prefix('human-resource/employee/')->group(function () {
+        Route::get('list', 'index')->name('employee.index');
+        Route::get('create', 'create')->name('employee.create');
+        Route::post('store', 'store')->name('employee.store');
+        Route::get('edit/{id}', 'edit')->name('employee.edit');
+        Route::get('show/{id}', 'show')->name('employee.show');
+        Route::post('update/{id}', 'update')->name('employee.update');
+        Route::post('delete', 'destroy')->name('employee.delete');
     });
 });
