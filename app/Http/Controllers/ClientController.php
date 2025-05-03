@@ -18,7 +18,7 @@ class ClientController extends Controller
     {
         if ($request->ajax()) {
             $data = Client::with(['user'])->where('is_active', 1);
-            return Datatables::of($data)
+            return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('is_active', function($row){
                         return '<span class="badge bg-success">Active</span>';
@@ -37,7 +37,7 @@ class ClientController extends Controller
     {
         if ($request->ajax()) {
             $data = Client::with(['user'])->where('is_active', 0);
-            return Datatables::of($data)
+            return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('is_active', function($row){
                         return '<span class="badge bg-danger">InActive</span>';

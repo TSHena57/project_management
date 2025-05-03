@@ -82,6 +82,9 @@
                 <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>New Projects</a>
                 <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>New Module</a>
                 <a href="{{route('type.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Type</a>
+                <a href="{{route('phase.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Phase</a>
+                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Module</a>
+                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Task</a>
                 <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Upcomming</a>
                 <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Running</a>
                 <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Completed</a>

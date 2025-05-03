@@ -20,7 +20,7 @@ class EmployeeController extends Controller
     {
         if ($request->ajax()) {
             $data = Employee::with(['user','designation:id,name','department:id,name']);
-            return Datatables::of($data)
+            return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('is_active', function($row){
                         if ($row->is_active) {

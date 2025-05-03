@@ -12,7 +12,7 @@ class DesignationController extends Controller
     {
         if ($request->ajax()) {
             $data = Designation::query();
-            return Datatables::of($data)
+            return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('is_active', function($row){
                         if ($row->is_active) {

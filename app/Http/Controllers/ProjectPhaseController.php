@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ProjectType;
+use App\Models\ProjectPhase;
 use DataTables;
 
-class ProjectTypeController extends Controller
+class ProjectPhaseController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = ProjectType::query();
+            $data = ProjectPhase::query();
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('is_active', function($row){
@@ -22,13 +22,14 @@ class ProjectTypeController extends Controller
                         }
                     })
                     ->addColumn('action', function($row){      
-                        return view('project_types.components.action', compact('row'));
+                        return view('project_phase.components.action', compact('row'));
                     })
                     ->rawColumns(['is_active','action'])
                     ->make(true);
         }
-        return view('project_types.index');
+        return view('project_phase.index');
     }
+
     public function store(Request $request)
     {
         try {
@@ -36,10 +37,10 @@ class ProjectTypeController extends Controller
                 'name' => 'required|string',
                 'is_active' => 'required|in:0,1',
             ]);
-            $user = ProjectType::create([
-                                'name' => $request->name,
-                                'is_active' => $request->is_active,
-                            ]);
+            ProjectPhase::create([
+                            'name' => $request->name,
+                            'is_active' => $request->is_active,
+                        ]);
             
             return redirect()->back()->with('success', 'Added Successfully.');
         } catch (\Exception $e) {
@@ -49,8 +50,8 @@ class ProjectTypeController extends Controller
 
     public function edit($id)
     {
-        $data['projectType'] = ProjectType::find($id);
-        return view('project_types.edit', $data);
+        $data['phase'] = ProjectPhase::find($id);
+        return view('project_phase.edit', $data);
     }
 
     public function update(Request $request, $id)
@@ -60,8 +61,8 @@ class ProjectTypeController extends Controller
                 'name' => 'required|string',
                 'is_active' => 'required|in:0,1',
             ]);
-            $projectType = ProjectType::find($id);
-            $projectType->update([
+            $phase = ProjectPhase::find($id);
+            $phase->update([
                             'name' => $request->name,
                             'is_active' => $request->is_active,
                         ]);
@@ -75,7 +76,7 @@ class ProjectTypeController extends Controller
     public function destroy(Request $request)
     {
         try {
-            $projectType = ProjectType::find($request->id);
+            $projectType = ProjectPhase::find($request->id);
             $projectType->delete();
             return response()->json(['success' => true]);
         } catch (\Exception $e) {

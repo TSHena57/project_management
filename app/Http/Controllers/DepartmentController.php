@@ -12,7 +12,7 @@ class DepartmentController extends Controller
     {
         if ($request->ajax()) {
             $data = Department::query();
-            return Datatables::of($data)
+            return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('is_active', function($row){
                         if ($row->is_active) {

@@ -8,6 +8,7 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProjectTypeController;
+use App\Http\Controllers\ProjectPhaseController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -63,5 +64,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('edit/{id}', 'edit')->name('type.edit');
         Route::post('update/{id}', 'update')->name('type.update');
         Route::post('delete', 'destroy')->name('type.delete');
+    });
+    Route::controller(ProjectPhaseController::class)->prefix('projects/phase/')->group(function () {
+        Route::get('list', 'index')->name('phase.index');
+        Route::post('store', 'store')->name('phase.store');
+        Route::get('edit/{id}', 'edit')->name('phase.edit');
+        Route::post('update/{id}', 'update')->name('phase.update');
+        Route::post('delete', 'destroy')->name('phase.delete');
     });
 });

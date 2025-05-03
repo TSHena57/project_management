@@ -3,143 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ProjectManage SaaS</title>
+  <title>Trelloop</title>
   <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
   <link href="{{asset('css/bootstrap-icons.css')}}" rel="stylesheet">
-  <style>
-    :root {
-      --primary-color: #4caf50; /* Green */
-      --secondary-color: #388e3c; /* Dark Green */
-      --accent-color: #f9a825;
-      --bg-light-gray: #f8f9fa;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white;
-      padding: 25px 0 100px 0;
-      text-align: center;
-    }
-
-    .features {
-      padding: 60px 0;
-      background-color: var(--bg-light-gray);
-    }
-
-    .feature-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.07);
-      padding: 30px;
-      transition: transform 0.2s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .feature-icon {
-      font-size: 2rem;
-      color: var(--primary-color);
-      margin-bottom: 15px;
-    }
-
-    .pricing {
-      padding: 60px 0;
-      background-color: white;
-    }
-
-    .pricing-card {
-      border-radius: 15px;
-      padding: 40px 30px;
-      color: white;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s;
-    }
-
-    .pricing-card:hover {
-      transform: scale(1.05);
-    }
-
-    .bronze {
-      background: linear-gradient(135deg, #76b947, #6a9e40);
-    }
-
-    .silver {
-      background: linear-gradient(135deg, #4caf50, #388e3c);
-    }
-
-    .platinum {
-      background: linear-gradient(135deg, #66bb6a, #558b2f);
-    }
-
-    .price-value {
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
-
-    .pricing-card ul {
-      list-style-type: none;
-      padding-left: 0;
-      margin-top: 15px;
-    }
-
-    .pricing-card ul li {
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-    }
-
-    .pricing-card ul li i {
-      color: #fff;
-      margin-right: 10px;
-    }
-
-    .btn-accent {
-      background-color: var(--accent-color);
-      border: none;
-      color: #fff;
-    }
-
-    .btn-accent:hover {
-      background-color: #c17900;
-    }
-
-    footer {
-      background-color: #f0f0f0;
-      padding: 30px 0;
-    }
-
-    .footer-link {
-      color: #6c757d;
-      text-decoration: none;
-    }
-
-    .footer-link:hover {
-      color: var(--primary-color);
-    }
-
-    .social-icon {
-      font-size: 1.2rem;
-      margin: 0 10px;
-      color: #6c757d;
-    }
-
-    .social-icon:hover {
-      color: var(--primary-color);
-    }
-  </style>
+  <link href="{{asset('css/frontpage.css')}}" rel="stylesheet">
 </head>
 <body>
   <header class="hero">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="display-6 fw-bold m-0">Trelloop</h1>
+        <h1 class="display-6 fw-bold m-0"><i class="bi bi-kanban"></i> TrellooP</h1>
         <a href="{{auth()->check() ? route('dashboard') : route('login')}}" class="btn btn-light">{{auth()->check() ? 'Dashboard' : 'Login'}}</a>
       </div>
       <h1 class="display-4 fw-bold">Manage Projects Smarter</h1>
@@ -233,7 +106,7 @@
 
   <footer class="text-center">
     <div class="container">
-      <p class="mb-2">© {{date('Y')}} Trelloop All rights reserved.</p>
+      <p class="mb-2">©{{date('Y')}} Trelloop All rights reserved.</p>
     </div>
   </footer>
 
