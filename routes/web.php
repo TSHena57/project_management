@@ -10,15 +10,15 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProjectTypeController;
 use App\Http\Controllers\ProjectPhaseController;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'welcome')->name('welcome');
 });
 
 Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
     Route::controller(HomeController::class)->group(function () {
-        Route::get('/dashboard', 'index')->name('dashboard');
+        Route::get('/dashboard', 'dashboard')->name('dashboard');
     });
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile-settings', 'profile_setup')->name('profile-settings');
