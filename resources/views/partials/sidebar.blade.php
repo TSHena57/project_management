@@ -67,7 +67,7 @@
                       <h5 class="mb-0">Employee</h5>
                    </div>
                 </div>
-                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Designation</a>
+                <a href="{{route('designation.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Designation</a>
                 <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Department</a>
                 <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Employee</a>
              </div>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DesignationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,5 +30,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('show/{id}', 'show')->name('lead.show');
         Route::post('update/{id}', 'update')->name('lead.update');
         Route::post('delete', 'destroy')->name('lead.delete');
+    });
+    Route::controller(DesignationController::class)->prefix('Human-resource/designation/')->group(function () {
+        Route::get('list', 'index')->name('designation.index');
+        Route::post('store', 'store')->name('designation.store');
+        Route::get('edit/{id}', 'edit')->name('designation.edit');
+        Route::post('update/{id}', 'update')->name('designation.update');
+        Route::post('delete', 'destroy')->name('designation.delete');
     });
 });

@@ -62,6 +62,7 @@ class ClientController extends Controller
         try {
             $request->validate([
                 'name' => 'required|string',
+                'email' => 'required|string|email',
                 'mobile' => 'required|max:14',
                 'login_access' => 'required|in:0,1',
                 'is_active' => 'required|in:0,1',
@@ -89,7 +90,7 @@ class ClientController extends Controller
                     ]);
             DB::commit();
             
-            return redirect()->back()->with('success', 'Updated Successfully.');
+            return redirect()->back()->with('success', 'Added Successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', $e->getMessage());
@@ -113,6 +114,7 @@ class ClientController extends Controller
         try {
             $request->validate([
                 'name' => 'required|string',
+                'email' => 'required|string|email',
                 'mobile' => 'required|max:14',
                 'login_access' => 'required|in:0,1',
                 'is_active' => 'required|in:0,1',
