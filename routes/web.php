@@ -9,5 +9,5 @@ Route::get('/', function () {
 
 Auth::routes(['register' => false]);
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 Route::get('/profile-settings', [ProfileController::class, 'profile_setup'])->name('profile-settings');

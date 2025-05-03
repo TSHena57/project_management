@@ -6,10 +6,10 @@
        <div class="top-navbar d-none d-xl-block">
           <ul class="navbar-nav align-items-center">
              <li class="nav-item">
-                <a class="nav-link" href="{{route('home')}}">Dashboard</a>
+                <a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
              </li>
              <li class="nav-item">
-                <a class="nav-link" href="{{route('home')}}">{{date('d M, Y : D')}}</a>
+                <a class="nav-link" href="{{route('dashboard')}}">{{date('d M, Y : D')}}</a>
              </li>
           </ul>
        </div>

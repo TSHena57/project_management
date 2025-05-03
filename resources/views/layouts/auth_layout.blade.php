@@ -16,7 +16,7 @@
   <!-- loader-->
 	<link href="{{asset('css/pace.min.css')}}" rel="stylesheet" />
 
-  <title>{{ config('app.name', 'Portolio Login') }}</title>
+  <title>{{ config('app.name', 'Trelloop Login') }}</title>
 </head>
 
 <body>

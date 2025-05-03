@@ -36,7 +36,7 @@
                       <h5 class="mb-0">Dashboards</h5>
                    </div>
                 </div>
-                <a href="{{route('home')}}" class="list-group-item"><i class="lni lni-dashboard"></i>Summary</a>
+                <a href="{{route('dashboard')}}" class="list-group-item"><i class="lni lni-dashboard"></i>Summary</a>
              </div>
           </div>
           <div class="tab-pane fade" id="pills-task">
