@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\DepartmentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,5 +38,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('edit/{id}', 'edit')->name('designation.edit');
         Route::post('update/{id}', 'update')->name('designation.update');
         Route::post('delete', 'destroy')->name('designation.delete');
+    });
+    Route::controller(DepartmentController::class)->prefix('Human-resource/department/')->group(function () {
+        Route::get('list', 'index')->name('department.index');
+        Route::post('store', 'store')->name('department.store');
+        Route::get('edit/{id}', 'edit')->name('department.edit');
+        Route::post('update/{id}', 'update')->name('department.update');
+        Route::post('delete', 'destroy')->name('department.delete');
     });
 });
