@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ProjectTypeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,5 +56,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('show/{id}', 'show')->name('employee.show');
         Route::post('update/{id}', 'update')->name('employee.update');
         Route::post('delete', 'destroy')->name('employee.delete');
+    });
+    Route::controller(ProjectTypeController::class)->prefix('projects/type/')->group(function () {
+        Route::get('list', 'index')->name('type.index');
+        Route::post('store', 'store')->name('type.store');
+        Route::get('edit/{id}', 'edit')->name('type.edit');
+        Route::post('update/{id}', 'update')->name('type.update');
+        Route::post('delete', 'destroy')->name('type.delete');
     });
 });

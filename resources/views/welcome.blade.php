@@ -190,38 +190,39 @@
       <div class="row g-4">
         <div class="col-md-4">
           <div class="pricing-card bronze">
-            <h5 class="fw-bold">Bronze</h5>
-            <div class="price-value my-3">$9<span class="fs-6">/mo</span></div>
+            <h5 class="fw-bold">BRONZE PACKAGE</h5>
+            <div class="price-value my-3">Free<span class="fs-6">/mo</span></div>
             <ul>
-              <li><i class="bi bi-check-circle"></i> 1 Project</li>
-              <li><i class="bi bi-check-circle"></i> Basic Gantt Access</li>
-              <li><i class="bi bi-check-circle"></i> Email Support</li>
+              <li><i class="bi bi-check-circle"></i> 1 Employee Manage</li>
+              <li><i class="bi bi-check-circle"></i> 10 Projects Manage</li>
+              <li><i class="bi bi-check-circle"></i> 10 Client Manage</li>
+              <li><i class="bi bi-check-circle"></i> Gantt Chart Access</li>
             </ul>
             <a href="#" class="btn btn-light mt-3">Get Bronze</a>
           </div>
         </div>
         <div class="col-md-4">
           <div class="pricing-card silver">
-            <h5 class="fw-bold">Silver</h5>
-            <div class="price-value my-3">$29<span class="fs-6">/mo</span></div>
+            <h5 class="fw-bold">SILVER PACKAGE</h5>
+            <div class="price-value my-3">TK. 500<span class="fs-6">/mo</span></div>
             <ul>
-              <li><i class="bi bi-check-circle"></i> 10 Projects</li>
-              <li><i class="bi bi-check-circle"></i> Full Gantt Access</li>
-              <li><i class="bi bi-check-circle"></i> Client Manager</li>
-              <li><i class="bi bi-check-circle"></i> Priority Support</li>
+              <li><i class="bi bi-check-circle"></i> 10 Employee Manage</li>
+              <li><i class="bi bi-check-circle"></i> 20 Projects Manage</li>
+              <li><i class="bi bi-check-circle"></i> 20 Client Manage</li>
+              <li><i class="bi bi-check-circle"></i> Gantt Chart Access</li>
             </ul>
             <a href="#" class="btn btn-light mt-3">Get Silver</a>
           </div>
         </div>
         <div class="col-md-4">
           <div class="pricing-card platinum">
-            <h5 class="fw-bold">Platinum</h5>
-            <div class="price-value my-3">$79<span class="fs-6">/mo</span></div>
+            <h5 class="fw-bold">PLATINUM PACKAGE</h5>
+            <div class="price-value my-3">TK. 1250<span class="fs-6">/mo</span></div>
             <ul>
-              <li><i class="bi bi-check-circle"></i> Unlimited Projects</li>
-              <li><i class="bi bi-check-circle"></i> Advanced Gantt + Reports</li>
-              <li><i class="bi bi-check-circle"></i> Client + Team Management</li>
-              <li><i class="bi bi-check-circle"></i> Dedicated Support</li>
+              <li><i class="bi bi-check-circle"></i> 25 Employee Manage</li>
+              <li><i class="bi bi-check-circle"></i> Unlimited Projects Manage</li>
+              <li><i class="bi bi-check-circle"></i> Unlimited Client Manage</li>
+              <li><i class="bi bi-check-circle"></i> Gantt Chart Access</li>
             </ul>
             <a href="#" class="btn btn-light mt-3">Get Platinum</a>
           </div>
