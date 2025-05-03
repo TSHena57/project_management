@@ -6,17 +6,17 @@
              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form class="row g-3" action="{{route('designation.update', $designation->id)}}" method="POST">
+            <form class="row g-3" action="{{route('type.update', $projectType->id)}}" method="POST">
                 @csrf
                 <div class="col-12">
                     <label class="form-label" for="name">Project Type</label>
-                    <input type="text" class="form-control" name="name" id="name" value="{{$designation->name}}">
+                    <input type="text" class="form-control" name="name" id="name" value="{{$projectType->name}}">
                 </div>
                 <div class="col-12">
                     <label class="form-label" for="is_active">Status</label>
                     <select class="form-select single-select" id="is_active" name="is_active" required>
-                        <option value="1" @selected($designation->is_active == 1)>Active</option>
-                        <option value="0" @selected($designation->is_active == 0)>In Active</option>
+                        <option value="1" @selected($projectType->is_active == 1)>Active</option>
+                        <option value="0" @selected($projectType->is_active == 0)>In Active</option>
                     </select>
                 </div>
                 <div class="col-12">

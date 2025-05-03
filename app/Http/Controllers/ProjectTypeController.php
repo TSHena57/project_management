@@ -29,4 +29,57 @@ class ProjectTypeController extends Controller
         }
         return view('project_types.index');
     }
+    public function store(Request $request)
+    {
+        try {
+            $request->validate([
+                'name' => 'required|string',
+                'is_active' => 'required|in:0,1',
+            ]);
+            $user = ProjectType::create([
+                                'name' => $request->name,
+                                'is_active' => $request->is_active,
+                            ]);
+            
+            return redirect()->back()->with('success', 'Added Successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function edit($id)
+    {
+        $data['projectType'] = ProjectType::find($id);
+        return view('project_types.edit', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'name' => 'required|string',
+                'is_active' => 'required|in:0,1',
+            ]);
+            $projectType = ProjectType::find($id);
+            $projectType->update([
+                            'name' => $request->name,
+                            'is_active' => $request->is_active,
+                        ]);
+            
+            return redirect()->back()->with('success', 'Updated Successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+    
+    public function destroy(Request $request)
+    {
+        try {
+            $projectType = ProjectType::find($request->id);
+            $projectType->delete();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
+    }
 }
