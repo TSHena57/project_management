@@ -56,8 +56,8 @@
                       <h5 class="mb-0">Leads</h5>
                    </div>
                 </div>
-                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Active Customer</a>
-                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>In-Active Customer</a>
+                <a href="{{route('lead.active_client')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Active Client</a>
+                <a href="{{route('lead.inactive_client')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>In-Active Client</a>
              </div>
           </div>
           <div class="tab-pane fade" id="pills-hr">

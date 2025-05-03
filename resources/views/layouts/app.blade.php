@@ -7,10 +7,17 @@
 
   <title>{{ config('app.name', 'Portolio') }}</title>
 
+  <script>
+    const APP_URL = '{{url('/')}}';
+    const APP_TOKEN = '{{csrf_token()}}';
+  </script>
   <link rel="icon" href="{{asset('images/favicon-32x32.png')}}" type="image/png" />
   <!--plugins-->
   <link href="{{asset('plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
   <link href="{{asset('plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" />
+  <link href="{{asset('plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+  <link href="{{asset('plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
+  <link href="{{asset('plugins/select2/css/select2-bootstrap4.css')}}" rel="stylesheet" />
   <!-- Bootstrap CSS -->
   <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
   <link href="{{asset('css/bootstrap-extended.css')}}" rel="stylesheet" />
@@ -62,8 +69,15 @@
   <script src="{{asset('plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
   <script src="{{asset('js/pace.min.js')}}"></script>
   <script src="{{asset('plugins/apexcharts-bundle/js/apexcharts.min.js')}}"></script>
+  <script src="{{asset('plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+  {{-- <script src="{{asset('js/table-datatable.js')}}"></script> --}}
+  <script src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
+  <script src="{{asset('js/form-select2.js')}}"></script>
   <!--app-->
   <script src="{{asset('js/app.js')}}"></script>
+  <script src="{{asset('js/sweetAlert.js')}}"></script>
+  <script src="{{asset('js/custom.js')}}"></script>
   <script src="{{asset('js/toastr.min.js')}}"></script>
   @include('partials.session_message')
   @stack('scripts')
