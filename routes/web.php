@@ -20,6 +20,7 @@ Route::controller(HomeController::class)->group(function () {
 Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
+    Route::view('/my-board', 'my_board.my_board')->name('my_board');
     Route::controller(HomeController::class)->group(function () {
         Route::get('/dashboard', 'dashboard')->name('dashboard');
     });

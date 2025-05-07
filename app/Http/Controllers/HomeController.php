@@ -24,7 +24,8 @@ class HomeController extends Controller
      */
     public function welcome()
     {
-        return view('welcome');
+        return redirect()->route('dashboard');
+        // return view('welcome');
     }
 
     public function dashboard()

@@ -7,7 +7,7 @@
           <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboards">
              <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-dashboards" type="button"><i class="lni lni-dashboard"></i></button>
           </li>
-          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="My Task">
+          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Board Manage">
              <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-task" type="button"><i class="lni lni-layers"></i></button>
           </li>
           <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Leads">
@@ -43,10 +43,10 @@
              <div class="list-group list-group-flush">
                 <div class="list-group-item">
                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-0">My Task</h5>
+                      <h5 class="mb-0">Board</h5>
                    </div>
                 </div>
-                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Board</a>
+                <a href="{{route('my_board')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>My Board</a>
              </div>
           </div>
           <div class="tab-pane fade {{Route::is('lead.*')  ? 'active show' : ''}}" id="pills-leads">
