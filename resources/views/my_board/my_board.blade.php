@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-4">
       <div class="kanban-column">
-        <div class="kanban-header text-warning">In Progress</div>
+        <div class="kanban-header text-danger">In Progress</div>
         <div class="card kanban-card">
           <div class="card-body">Build login feature</div>
         </div>
