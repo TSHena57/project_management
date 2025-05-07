@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    protected $fillable = ['client_id','project_manager_id','project_name','open_date','close_date','project_value','description','project_current_status','awarded_by','created_by','updated_by'];
+    protected $fillable = ['project_type_id','client_id','project_manager_id','project_name','open_date','close_date','project_value','description','project_current_status','awarded_by','created_by','updated_by'];
     
     public function client()
     {
         return $this->belongsTo(Client::class,'client_id','id')->withDefault();
+    }
+
+    public function project_type()
+    {
+        return $this->belongsTo(ProjectType::class,'project_type_id','id')->withDefault();
     }
 
     public function project_manager()

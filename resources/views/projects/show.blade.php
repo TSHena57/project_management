@@ -35,6 +35,10 @@
                         <td width="70%">{{currencySymbol($project->project_value)}}</td>
                     </tr>
                     <tr>
+                        <td width="30%">Project Type</td>
+                        <td width="70%">{{$project->project_type->name}}</td>
+                    </tr>
+                    <tr>
                         <td width="30%">Client</td>
                         <td width="70%">{{$project->client->user->name}}</td>
                     </tr>

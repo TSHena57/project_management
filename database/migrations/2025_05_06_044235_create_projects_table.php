@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('project_type_id')->default(0)->index();
             $table->foreignId('client_id')->default(0)->index();
             $table->foreignId('project_manager_id')->default(0)->index();
             $table->string('project_name',255)->index();

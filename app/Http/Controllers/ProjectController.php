@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\ProjectPlan;
 use App\Models\ProjectPhase;
 use App\Models\ProjectModule;
+use App\Models\ProjectType;
 use Carbon\Carbon;
 use DataTables;
 
@@ -40,7 +41,8 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return view('projects.create');
+        $data['types'] = ProjectType::where('is_active',1)->get();
+        return view('projects.create', $data);
     }
 
     public function store(Request $request)
@@ -68,6 +70,7 @@ class ProjectController extends Controller
                                 'project_value' => $request->project_value,
                                 'description' => $request->description,
                                 'project_current_status' => $request->project_current_status,
+                                'project_type_id' => $request->project_type_id,
                                 'awarded_by' => $request->awarded_by,
                             ]);
             
@@ -120,6 +123,7 @@ class ProjectController extends Controller
                             'description' => $request->description,
                             'project_current_status' => $request->project_current_status,
                             'awarded_by' => $request->awarded_by,
+                            'project_type_id' => $request->project_type_id,
                         ]);
             
             DB::commit();

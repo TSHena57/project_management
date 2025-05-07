@@ -30,6 +30,14 @@
                             </select>
                         </div>
                         <div class="col-md-6">
+                            <label class="form-label" for="project_type_id">Project Type</label>
+                            <select class="form-select single-select" id="project_type_id" name="project_type_id" required>
+                                @foreach ($types as $type)
+                                    <option value="{{$type->id}}">{{$type->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6">
                             <label class="form-label" for="project_manager_id">Project Manager</label>
                             <select class="form-select server-side-select" id="project_manager_id" name="project_manager_id" required>
                                 <option value="0">Select Project Manager</option>

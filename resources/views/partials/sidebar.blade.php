@@ -72,7 +72,7 @@
                 <a href="{{route('employee.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Employee</a>
              </div>
           </div>
-          <div class="tab-pane fade" id="pills-projects">
+          <div class="tab-pane fade {{Route::is('projects.*') || Route::is('type.*') || Route::is('phase.*')  ? 'active show' : ''}}" id="pills-projects">
              <div class="list-group list-group-flush">
                 <div class="list-group-item">
                    <div class="d-flex w-100 justify-content-between">
@@ -83,7 +83,6 @@
                 <a href="{{route('projects.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Projects</a>
                 <a href="{{route('type.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Type</a>
                 <a href="{{route('phase.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Phase</a>
-                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Task</a>
              </div>
           </div>
           {{-- <div class="tab-pane fade" id="pills-team">

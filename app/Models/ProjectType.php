@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class ProjectType extends Model
 {
     protected $fillable = ['name','is_active'];
+    
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }
