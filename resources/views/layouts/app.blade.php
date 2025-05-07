@@ -73,7 +73,6 @@
   <script src="{{asset('plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
   {{-- <script src="{{asset('js/table-datatable.js')}}"></script> --}}
   <script src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
-  <script src="{{asset('js/form-select2.js')}}"></script>
   <!--app-->
   <script src="{{asset('js/app.js')}}"></script>
   <script src="{{asset('js/sweetAlert.js')}}"></script>

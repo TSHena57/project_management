@@ -39,6 +39,33 @@ class EmployeeController extends Controller
         return view('employee.index');
     }
 
+    public function list_for_select_ajax(Request $request)
+    {
+        $items = Employee::query();
+        $items = $items->with(['user:id,name'])->where('is_active', 1);
+
+        if ($request->search != '') {
+            $items = $items->whereLike(['user.name'], $request->search);
+        }
+
+        // Paginate the results
+        $items = $items->paginate(10);
+        $response = [];
+        foreach ($items as $item) {
+            $response[] = [
+                'id'    => $item->id,
+                'text'  => $item->user->name,
+            ];
+        }
+
+        $data['results'] = $response;
+        if ($items->hasMorePages()) {
+            $data['pagination'] = ['more' => true];
+        }
+
+        return response()->json($data);
+    }
+
     public function create()
     {
         $data['designations'] = Designation::where('is_active', 1)->get(['id','name']);
@@ -54,7 +81,7 @@ class EmployeeController extends Controller
                 'email' => 'required|string|email',
                 'designation_id' => 'required|numeric|gt:0',
                 'department_id' => 'required|numeric|gt:0',
-                'mobile' => 'required|max:14',
+                'mobile' => 'nullable|max:14',
                 'login_access' => 'required|in:0,1',
                 'is_active' => 'required|in:0,1',
                 'file' => 'nullable|file|mimes:jpg,png,jpeg|max:1000',
@@ -111,7 +138,7 @@ class EmployeeController extends Controller
             $request->validate([
                 'name' => 'required|string',
                 'email' => 'required|string|email',
-                'mobile' => 'required|max:14',
+                'mobile' => 'nullable|max:14',
                 'login_access' => 'required|in:0,1',
                 'is_active' => 'required|in:0,1',
                 'file' => 'nullable|file|mimes:jpg,png,jpeg|max:1000',

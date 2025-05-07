@@ -9,6 +9,9 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProjectTypeController;
 use App\Http\Controllers\ProjectPhaseController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectTeamController;
+use App\Http\Controllers\ProjectModuleController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'welcome')->name('welcome');
@@ -34,6 +37,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('show/{id}', 'show')->name('lead.show');
         Route::post('update/{id}', 'update')->name('lead.update');
         Route::post('delete', 'destroy')->name('lead.delete');
+        Route::get('/list-select-ajax', 'list_for_select_ajax')->name('lead.list_for_select_ajax');
     });
     Route::controller(DesignationController::class)->prefix('human-resource/designation/')->group(function () {
         Route::get('list', 'index')->name('designation.index');
@@ -57,6 +61,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('show/{id}', 'show')->name('employee.show');
         Route::post('update/{id}', 'update')->name('employee.update');
         Route::post('delete', 'destroy')->name('employee.delete');
+        Route::get('/list-select-ajax', 'list_for_select_ajax')->name('employee.list_for_select_ajax');
     });
     Route::controller(ProjectTypeController::class)->prefix('projects/type/')->group(function () {
         Route::get('list', 'index')->name('type.index');
@@ -71,5 +76,25 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('edit/{id}', 'edit')->name('phase.edit');
         Route::post('update/{id}', 'update')->name('phase.update');
         Route::post('delete', 'destroy')->name('phase.delete');
+        Route::get('/list-select-ajax', 'list_for_select_ajax')->name('phase.list_for_select_ajax');
+    });
+    Route::controller(ProjectModuleController::class)->prefix('projects/modules/')->group(function () {
+        Route::post('store', 'store')->name('modules.store');
+        Route::get('edit/{id}', 'edit')->name('modules.edit');
+        Route::post('update/{id}', 'update')->name('modules.update');
+        Route::post('delete', 'destroy')->name('modules.delete');
+    });
+    Route::controller(ProjectController::class)->prefix('projects/')->group(function () {
+        Route::get('list', 'index')->name('projects.index');
+        Route::get('create', 'create')->name('projects.create');
+        Route::post('store', 'store')->name('projects.store');
+        Route::get('edit/{id}', 'edit')->name('projects.edit');
+        Route::get('show/{id}', 'show')->name('projects.show');
+        Route::post('update/{id}', 'update')->name('projects.update');
+        Route::post('delete', 'destroy')->name('projects.delete');
+    });
+    Route::controller(ProjectTeamController::class)->prefix('projects/team/')->group(function () {
+        Route::post('store', 'store')->name('project_team.store');
+        Route::post('remove', 'destroy')->name('project_team.remove');
     });
 });

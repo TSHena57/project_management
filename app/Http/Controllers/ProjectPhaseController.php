@@ -30,6 +30,33 @@ class ProjectPhaseController extends Controller
         return view('project_phase.index');
     }
 
+    public function list_for_select_ajax(Request $request)
+    {
+        $items = ProjectPhase::query();
+        $items = $items->where('is_active', 1);
+
+        if ($request->search != '') {
+            $items = $items->whereLike(['name'], $request->search);
+        }
+
+        // Paginate the results
+        $items = $items->paginate(10);
+        $response = [];
+        foreach ($items as $item) {
+            $response[] = [
+                'id'    => $item->id,
+                'text'  => $item->name,
+            ];
+        }
+
+        $data['results'] = $response;
+        if ($items->hasMorePages()) {
+            $data['pagination'] = ['more' => true];
+        }
+
+        return response()->json($data);
+    }
+
     public function store(Request $request)
     {
         try {

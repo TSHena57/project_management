@@ -19,9 +19,9 @@
           <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Projects">
              <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-projects" type="button"><i class="lni lni-agenda"></i></button>
           </li>
-          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Teams">
+          {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Teams">
              <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-team" type="button"><i class="lni lni-network"></i></button>
-          </li>
+          </li> --}}
        </ul>
     </div>
     <div class="textmenu">
@@ -79,18 +79,14 @@
                       <h5 class="mb-0">Projects</h5>
                    </div>
                 </div>
-                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>New Projects</a>
-                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>New Module</a>
+                <a href="{{route('projects.create')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>New Projects</a>
+                <a href="{{route('projects.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Projects</a>
                 <a href="{{route('type.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Type</a>
                 <a href="{{route('phase.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Phase</a>
-                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Module</a>
                 <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Task</a>
-                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Upcomming</a>
-                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Running</a>
-                <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Completed</a>
              </div>
           </div>
-          <div class="tab-pane fade" id="pills-team">
+          {{-- <div class="tab-pane fade" id="pills-team">
              <div class="list-group list-group-flush">
                 <div class="list-group-item">
                    <div class="d-flex w-100 justify-content-between">
@@ -100,7 +96,7 @@
                 <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>New Team</a>
                 <a href="#" class="list-group-item"><i class="lni lni-arrow-right"></i>Team List</a>
              </div>
-          </div>
+          </div> --}}
        </div>
     </div>
  </aside>

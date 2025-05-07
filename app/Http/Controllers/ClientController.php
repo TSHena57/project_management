@@ -33,6 +33,33 @@ class ClientController extends Controller
         return view('leads.active_clients');
     }
 
+    public function list_for_select_ajax(Request $request)
+    {
+        $items = Client::query();
+        $items = $items->with(['user:id,name'])->where('is_active', 1);
+
+        if ($request->search != '') {
+            $items = $items->whereLike(['user.name'], $request->search);
+        }
+
+        // Paginate the results
+        $items = $items->paginate(10);
+        $response = [];
+        foreach ($items as $item) {
+            $response[] = [
+                'id'    => $item->id,
+                'text'  => $item->user->name,
+            ];
+        }
+
+        $data['results'] = $response;
+        if ($items->hasMorePages()) {
+            $data['pagination'] = ['more' => true];
+        }
+
+        return response()->json($data);
+    }
+
     public function inactive_client(Request $request)
     {
         if ($request->ajax()) {
@@ -63,7 +90,7 @@ class ClientController extends Controller
             $request->validate([
                 'name' => 'required|string',
                 'email' => 'required|string|email',
-                'mobile' => 'required|max:14',
+                'mobile' => 'nullable|max:14',
                 'login_access' => 'required|in:0,1',
                 'is_active' => 'required|in:0,1',
                 'file' => 'nullable|file|mimes:jpg,png,jpeg|max:1000',
@@ -115,7 +142,7 @@ class ClientController extends Controller
             $request->validate([
                 'name' => 'required|string',
                 'email' => 'required|string|email',
-                'mobile' => 'required|max:14',
+                'mobile' => 'nullable|max:14',
                 'login_access' => 'required|in:0,1',
                 'is_active' => 'required|in:0,1',
                 'file' => 'nullable|file|mimes:jpg,png,jpeg|max:1000',

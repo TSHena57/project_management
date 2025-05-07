@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\ProjectPhase;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -20,6 +21,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Tahsin Sorwar',
             'email' => 'tahsin@example.com',
             'password' => Hash::make("tahsin@example.com"),
+        ]);
+        ProjectPhase::create([
+            'name' => 'No Phase',
+            'is_active' => 1,
         ]);
     }
 }
