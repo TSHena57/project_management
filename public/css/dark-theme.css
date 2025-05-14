@@ -757,7 +757,10 @@ html.dark-theme .bg-body {
     }
 
 }
-
+.accordion-item {
+    color: #fff;
+    text-align: left;
+}
 
 
 

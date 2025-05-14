@@ -65,6 +65,7 @@ class ProjectController extends Controller
                                 'client_id' => $request->client_id,
                                 'project_manager_id' => $request->project_manager_id,
                                 'project_name' => $request->project_name,
+                                'slug' => str_replace(' ','-',strtolower($request->project_name)).'-'.date('is'),
                                 'open_date' => Carbon::parse($request->open_date)->format('Y-m-d'),
                                 'close_date' => Carbon::parse($request->close_date)->format('Y-m-d'),
                                 'project_value' => $request->project_value,
@@ -92,7 +93,7 @@ class ProjectController extends Controller
     public function show($id)
     {
         $data['project'] = Project::with(['client','project_manager','project_teams','project_teams.employee'])->find($id);
-        $data['module_phases'] = ProjectModule::with(['project_phase:id,name','tasks'])->where('project_id',$id)->get()->groupBy(['project_phase.name']);
+        $data['module_phases'] = ProjectModule::with(['project_phase:id,name','project_plans','project_plans.employee','project_plans.creator:id,name,avatar'])->where('project_id',$id)->get()->groupBy(['project_phase.name']);
                                 
         return view('projects.show', $data);
     }

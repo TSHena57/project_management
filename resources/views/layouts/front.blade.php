@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{asset('images/brand-logo-2.png')}}" type="image/png" />
 
     <title>{{ config('app.name', 'Trelloop') }}</title>
 

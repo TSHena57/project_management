@@ -12,6 +12,7 @@ use App\Http\Controllers\ProjectPhaseController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTeamController;
 use App\Http\Controllers\ProjectModuleController;
+use App\Http\Controllers\ProjectPlanController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'welcome')->name('welcome');
@@ -97,5 +98,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
     Route::controller(ProjectTeamController::class)->prefix('projects/team/')->group(function () {
         Route::post('store', 'store')->name('project_team.store');
         Route::post('remove', 'destroy')->name('project_team.remove');
+    });
+    Route::controller(ProjectPlanController::class)->prefix('projects/plan/')->group(function () {
+        Route::post('store', 'store')->name('project_plan.store');
+        Route::post('remove', 'destroy')->name('project_plan.remove');
     });
 });

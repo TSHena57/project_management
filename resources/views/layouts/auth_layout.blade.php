@@ -4,7 +4,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+  <link rel="icon" href="{{asset('images/brand-logo-2.png')}}" type="image/png" />
   <!-- Bootstrap CSS -->
   <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
   <link href="{{asset('css/bootstrap-extended.css')}}" rel="stylesheet" />

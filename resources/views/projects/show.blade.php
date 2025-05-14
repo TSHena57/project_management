@@ -110,7 +110,7 @@
                 <div class="col-12">
                     <input type="hidden" name="project_id" value="{{$project->id}}">
                     <label class="form-label" for="employee_id">Project Team Member <span class="text-danger">*</span></label>
-                    <select class="form-select server-side-select" id="employee_id" name="employee_id" required>
+                    <select class="form-select server-side-select employee_id" id="employee_id" name="employee_id" required>
                         <option value="0">Select Member</option>
                     </select>
                 </div>
@@ -191,19 +191,21 @@
                                 <th>Added By</th>
                                 <th>Duration</th>
                                 <th width="10%">Status</th>
-                                <th width="10%">Details</th>
+                                <th width="10%">Action</th>
                             </tr>
                         </thead>
             
                         <tbody>
-                            @forelse($module->tasks as $task)
+                            @forelse($module->project_plans as $task)
                                 <tr>
                                     <td>{{ $task->task_name }}</td>
                                     <td>{{ $task->employee->user->name }}</td>
                                     <td>{{ $task->creator->name }}</td>
                                     <td><span class="badge bg-primary">{{ $task->task_duration_hrs }}</span></td>
                                     <td>{{ $task->current_status }}</td>
-                                    <td><a href="{{route('projects.show', $row->id)}}" class="btn btn-sm btn-outline-info"><i class="lni lni-eye"></i></a></td>
+                                    <td>
+                                        <button type="button" onclick="deleteData('Task', '{{ route('project_plan.remove') }}', {{ $task->id }})" class="btn btn-sm btn-outline-danger"><i class="lni lni-trash"></i></button>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
@@ -211,7 +213,63 @@
                                 </tr>
                             @endforelse
                             <tr>
-                                <td colspan="6" class="text-end"><a href="javascript:;" class="btn btn-sm btn-outline-success"><i class="lni lni-plus"></i> Add New Task</a></td>
+                                <td colspan="6" class="text-end">
+                                    <div class="accordion" id="module{{$module->id}}">
+                                        <div class="accordion-item">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button class="btn btn-sm btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#moduleSection{{$module->id}}" aria-expanded="true" aria-controls="moduleSection{{$module->id}}">
+                                                        <i class="lni lni-plus"></i> Add New Task for {{ $module->module_name }}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div id="moduleSection{{$module->id}}" class="accordion-collapse collapse" aria-labelledby="heading{{$module->id}}" data-bs-parent="#module{{$module->id}}" style="">
+                                                <div class="accordion-body">
+                                                    <form class="row g-3" action="{{route('project_plan.store')}}" method="POST">
+                                                        @csrf
+                                                        <div class="col-md-4">
+                                                            <input type="hidden" name="project_id" value="{{$project->id}}">
+                                                            <input type="hidden" name="project_phase_id" value="{{$module->project_phase_id}}">
+                                                            <input type="hidden" name="project_module_id" value="{{$module->id}}">
+                                                            <label class="form-label" for="employee_id">Team Member <span class="text-danger">*</span></label>
+                                                            <select class="form-select server-side-select employee_id" name="employee_id" required>
+                                                                <option value="0">Select Member</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="task_name">Task Name <span class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" name="task_name" value="" required>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="task_duration_hrs">Task Duration <span class="text-danger">(in Hours)</span></label>
+                                                            <input type="number" min="0" step="0.1" class="form-control" name="task_duration_hrs" value="0" required>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="current_status">Current Status</label>
+                                                            <select class="form-select single-select" id="current_status" name="current_status" required>
+                                                                <option value="On Hold" selected>On Hold</option>
+                                                                <option value="To Do">To Do</option>
+                                                                <option value="In Progress">In Progress</option>
+                                                                <option value="Testing">Testing</option>
+                                                                <option value="Completed">Completed</option>
+                                                                <option value="Error Solving">Error Solving</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <label class="form-label">Description</label>
+                                                            <textarea class="form-control" type="text" name="task_details"></textarea>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="d-grid">
+                                                                <button type="submit" class="btn btn-primary">Add Member</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr
                         </tbody>
                     @endforeach
@@ -251,7 +309,7 @@
         });
     // });
         
-    $("#employee_id").select2({
+    $(".employee_id").select2({
         ajax: {
             url: '{{route('employee.list_for_select_ajax')}}',
             type: "get",

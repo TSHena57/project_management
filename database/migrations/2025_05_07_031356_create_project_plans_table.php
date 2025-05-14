@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('task_name',255)->index();
             $table->text('task_details')->nullable();
             $table->foreignId('employee_id')->default(0)->index()->comment('assigned_user');
-            $table->enum('current_status',['On Hold','To Do','In Progress','Testing','Completed'])->default('On Hold');
-            $table->double('task_duration_hrs',10,2)->default(1);
+            $table->enum('current_status',['On Hold','To Do','In Progress','Testing','Completed','Error Solving'])->default('On Hold');
+            $table->double('task_duration_hrs',10,2)->default(1)->comment('Hours');
+            $table->unsignedBigInteger('priority')->default(1);
             $table->date('start_date')->default(date("Y-m-d"))->index();
             $table->date('end_date')->default(date("Y-m-d"))->index();
             $table->unsignedBigInteger("created_by")->nullable();

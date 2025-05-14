@@ -1,4 +1,5 @@
 <!doctype html>
+{{-- <html lang="en" class="minimal-theme"> --}}
 <html lang="en" class="dark-theme">
 <head>
   <!-- Required meta tags -->
@@ -11,7 +12,7 @@
     const APP_URL = '{{url('/')}}';
     const APP_TOKEN = '{{csrf_token()}}';
   </script>
-  <link rel="icon" href="{{asset('images/favicon-32x32.png')}}" type="image/png" />
+  <link rel="icon" href="{{asset('images/brand-logo-2.png')}}" type="image/png" />
   <!--plugins-->
   <link href="{{asset('plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
   <link href="{{asset('plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" />

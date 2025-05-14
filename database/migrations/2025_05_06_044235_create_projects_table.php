@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('client_id')->default(0)->index();
             $table->foreignId('project_manager_id')->default(0)->index();
             $table->string('project_name',255)->index();
+            $table->string('slug',255)->index();
             $table->date('open_date')->default(date("Y-m-d"))->index();
             $table->date('close_date')->default(date("Y-m-d"))->index();
             $table->double('project_value', 20,2)->default(0)->index();

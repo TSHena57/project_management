@@ -18,9 +18,14 @@ class ProjectModule extends Model
         return $this->belongsTo(ProjectPhase::class,'project_phase_id','id')->withDefault(['name' => 'No Phase Selected Yet']);
     }
     
-    public function tasks()
+    public function project_plans()
     {
         return $this->hasMany(ProjectPlan::class, 'project_module_id', 'id');
+    }
+    
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'project_module_id', 'id');
     }
 
     public function creator()
