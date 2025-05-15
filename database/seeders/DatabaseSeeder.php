@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make("tahsin@example.com"),
         ]);
         ProjectPhase::create([
-            'name' => 'No Phase',
+            'name' => 'Default Phase',
             'is_active' => 1,
         ]);
     }

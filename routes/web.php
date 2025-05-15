@@ -101,6 +101,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
     });
     Route::controller(ProjectPlanController::class)->prefix('projects/plan/')->group(function () {
         Route::post('store', 'store')->name('project_plan.store');
+        Route::get('edit/{id}', 'edit')->name('project_plan.edit');
+        Route::post('project_plan/{id}', 'update')->name('project_plan.update');
         Route::post('remove', 'destroy')->name('project_plan.remove');
     });
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProjectPlan;
+use Carbon\Carbon;
 use DataTables;
 
 class ProjectPlanController extends Controller
@@ -58,6 +59,8 @@ class ProjectPlanController extends Controller
                             'task_name' => $request->task_name,
                             'task_details' => $request->task_details,
                             'task_duration_hrs' => $request->task_duration_hrs,
+                            'start_date' => Carbon::parse($request->start_date)->format('Y-m-d'),
+                            'end_date' => Carbon::parse($request->end_date)->format('Y-m-d'),
                             'priority' => $request->priority,
                             'current_status' => $request->current_status,
                         ]);
@@ -70,17 +73,14 @@ class ProjectPlanController extends Controller
 
     public function edit($id)
     {
-        $data['phase'] = ProjectPlan::find($id);
-        return view('project_phase.edit', $data);
+        $data['plan'] = ProjectPlan::with(['employee'])->find($id);
+        return view('projects.components.edit_task', $data);
     }
 
     public function update(Request $request, $id)
     {
         try {
             $request->validate([
-                'project_module_id' => 'nullable|numeric|gt:0',
-                'project_phase_id' => 'nullable|numeric|gt:0',
-                'project_id' => 'nullable|numeric|gt:0',
                 'employee_id' => 'nullable|numeric|min:0',
                 'task_name' => 'required|string',
                 'task_details' => 'nullable',
@@ -92,13 +92,12 @@ class ProjectPlanController extends Controller
             ]);
             $phase = ProjectPlan::find($id);
             $phase->update([
-                            'project_module_id' => $request->project_module_id,
-                            'project_phase_id' => $request->project_phase_id,
-                            'project_id' => $request->project_id,
                             'employee_id' => $request->employee_id,
                             'task_name' => $request->task_name,
                             'task_details' => $request->task_details,
                             'task_duration_hrs' => $request->task_duration_hrs,
+                            'start_date' => Carbon::parse($request->start_date)->format('Y-m-d'),
+                            'end_date' => Carbon::parse($request->end_date)->format('Y-m-d'),
                             'priority' => $request->priority,
                             'current_status' => $request->current_status,
                         ]);

@@ -148,7 +148,12 @@
                     @foreach ($project->project_teams as $k => $team)
                         <tr>
                             <td>{{$k+1}}</td>
-                            <td>{{$team->employee->user->name}}</td>
+                            <td>
+                                <div class="chip">
+                                    <img src="{{showDefaultImage('storage/'.$team->employee->user->avatar)}}" alt="{{ $team->employee->user->name }}">
+                                    {{$team->employee->user->name}}
+                                </div>
+                                </td>
                             <td>{{$team->role_play}}</td>
                             <td>{{date('d M, Y',strtotime($team->join_date))}}</td>
                             <td>
@@ -199,11 +204,24 @@
                             @forelse($module->project_plans as $task)
                                 <tr>
                                     <td>{{ $task->task_name }}</td>
-                                    <td>{{ $task->employee->user->name }}</td>
-                                    <td>{{ $task->creator->name }}</td>
-                                    <td><span class="badge bg-primary">{{ $task->task_duration_hrs }}</span></td>
+                                    <td>
+                                        @if ($task->employee_id > 0)
+                                            <div class="chip">
+                                                <img src="{{showDefaultImage('storage/'.$task->employee->user->avatar)}}" alt="{{ $task->employee->user->name }}">
+                                                {{ $task->employee->user->name }}
+                                            </div>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="chip">
+                                            <img src="{{showDefaultImage('storage/'.$task->creator->avatar)}}" alt="{{ $task->creator->name }}">
+                                            {{ $task->creator->name }}
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-primary">{{ $task->task_duration_hrs }} Hrs</span></td>
                                     <td>{{ $task->current_status }}</td>
                                     <td>
+                                         <button type="button" class="btn btn-sm btn-outline-warning detail_info" data-route="{{route('project_plan.edit', $task->id)}}"><i class="lni lni-pencil"></i></button>
                                         <button type="button" onclick="deleteData('Task', '{{ route('project_plan.remove') }}', {{ $task->id }})" class="btn btn-sm btn-outline-danger"><i class="lni lni-trash"></i></button>
                                     </td>
                                 </tr>
@@ -255,13 +273,29 @@
                                                                 <option value="Error Solving">Error Solving</option>
                                                             </select>
                                                         </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="priority">Task Priority <span class="text-danger">*</span></label>
+                                                            <select class="form-select single-select" name="priority" required>
+                                                                <option value="1" selected>Low</option>
+                                                                <option value="2">Medium</option>
+                                                                <option value="3">Top</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="start_date">Start Date</label>
+                                                            <input type="date" class="form-control" name="start_date" value="{{date('Y-m-d')}}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="end_date">End Date</label>
+                                                            <input type="date" class="form-control" name="end_date" value="{{date('Y-m-d')}}">
+                                                        </div>
                                                         <div class="col-md-8">
                                                             <label class="form-label">Description</label>
                                                             <textarea class="form-control" type="text" name="task_details"></textarea>
                                                         </div>
                                                         <div class="col-12">
                                                             <div class="d-grid">
-                                                                <button type="submit" class="btn btn-primary">Add Member</button>
+                                                                <button type="submit" class="btn btn-primary">Add Task</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -288,6 +322,25 @@
     //     "use strict";
         $(document).ready(function() {
             getPhase();
+            getEmployee()
+        });
+        $(document).on('click','.detail_info', function(){
+            $('.detail_info').addClass('disabled');
+            var url = $(this).attr("data-route");
+            $.ajax({
+                url: url,
+                type: "GET",
+                dataType: "HTML",
+                success: function (response) {
+                    $('#ajaxDiv').html(response);
+                    $('#exampleLargeModal').modal('show');
+                    $('.detail_info').removeClass('disabled');
+                    getEmployee();
+                },
+                error: function (error) {
+                    $('.detail_info').removeClass('disabled');
+                }
+            });
         });
         $(document).on('click','.module_info', function(){
             $('.module_info').addClass('disabled');
@@ -309,25 +362,27 @@
         });
     // });
         
-    $(".employee_id").select2({
-        ajax: {
-            url: '{{route('employee.list_for_select_ajax')}}',
-            type: "get",
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                    var query = {
-                        search: params.term,
-                        page: params.page || 1
-                    }
-                    return query;
+    function getEmployee(){
+        $(".employee_id").select2({
+            ajax: {
+                url: '{{route('employee.list_for_select_ajax')}}',
+                type: "get",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                        var query = {
+                            search: params.term,
+                            page: params.page || 1
+                        }
+                        return query;
+                },
+                cache: false
             },
-            cache: false
-        },
-        escapeMarkup: function (m) {
-            return m;
-        }
-    });
+            escapeMarkup: function (m) {
+                return m;
+            }
+        });
+    }
     function getPhase(){
         $(".project_phase_id").select2({
             ajax: {
