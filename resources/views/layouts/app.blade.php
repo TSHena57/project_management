@@ -43,13 +43,13 @@
   <div class="wrapper">
     <!--start top header-->
     @include('partials.header')
-       <!--end top header-->
+      <!--end top header-->
 
-       <!--start sidebar -->
-        @include('partials.sidebar')
-        <!--start sidebar -->
+      <!--start sidebar -->      
+      @include('partials.sidebar')
+      <!--start sidebar -->
 
-        <!--start content-->
+      <!--start content-->
       <main class="page-content">
         @yield('content')
       </main>

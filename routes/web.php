@@ -14,6 +14,7 @@ use App\Http\Controllers\ProjectTeamController;
 use App\Http\Controllers\ProjectModuleController;
 use App\Http\Controllers\ProjectPlanController;
 use App\Http\Controllers\ActivityLogController;
+use App\Http\Controllers\PackagePlanController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'welcome')->name('welcome');
@@ -22,6 +23,23 @@ Route::controller(HomeController::class)->group(function () {
 Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
+
+    // SYSTEM ADMIN ROUTES STARTS
+    Route::group(['middleware' => ['system_owner']],function () {
+        Route::controller(PackagePlanController::class)->prefix('package-plans/')->group(function () {
+            Route::get('list', 'index')->name('package_plans.index');
+            Route::get('create', 'create')->name('package_plans.create');
+            Route::post('store', 'store')->name('package_plans.store');
+            Route::get('edit/{id}', 'edit')->name('package_plans.edit');
+            Route::get('show/{id}', 'show')->name('package_plans.show');
+            Route::post('update/{id}', 'update')->name('package_plans.update');
+            Route::post('delete', 'destroy')->name('package_plans.delete');
+            Route::get('/list-select-ajax', 'list_for_select_ajax')->name('package_plans.list_for_select_ajax');
+        });
+    });
+    // SYSTEM ADMIN ROUTES ENDS
+
+    // ORGANIZATION ROUTES STARTS
     Route::view('/my-board', 'my_board.my_board')->name('my_board');
     Route::controller(HomeController::class)->group(function () {
         Route::get('/dashboard', 'dashboard')->name('dashboard');
@@ -110,4 +128,5 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('list', 'index')->name('project-activity-logs.index');
         Route::post('delete', 'destroy')->name('project-activity-logs.delete');
     });
+    // ORGANIZATION ROUTES END
 });
