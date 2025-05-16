@@ -7,15 +7,15 @@
     <div class="row g-4">
       <div class="col-md-3">
         <div class="feature-card">
-          <div class="feature-icon"><i class="bi bi-kanban"></i></div>
+          <div class="feature-icon"><i class="bi bi-diagram-3"></i></div>
           <h5 class="fw-bold">Project Management</h5>
           <p>Track progress, assign tasks, and stay organized effortlessly.</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="feature-card">
-          <div class="feature-icon"><i class="bi bi-diagram-3"></i></div>
-          <h5 class="fw-bold">Project Planning</h5>
+          <div class="feature-icon"><i class="bi bi-kanban"></i></div>
+          <h5 class="fw-bold">Activity Logs</h5>
           <p>Break down projects into phases and modules with clarity.</p>
         </div>
       </div>
