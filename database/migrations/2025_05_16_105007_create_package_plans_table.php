@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('max_project_count')->default(2);
             $table->boolean('project_activity_log_available')->default(0);
             $table->boolean('gantt_chart_available')->default(0);
-            $table->boolean('role_permission_available')->default(1);
+            $table->boolean('report_available')->default(0);
             $table->boolean('client_login_available')->default(0);
             $table->boolean('is_active')->default(1);
             $table->timestamps();

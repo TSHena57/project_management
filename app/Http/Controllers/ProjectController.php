@@ -123,6 +123,7 @@ class ProjectController extends Controller
                             'client_id' => $request->client_id,
                             'project_manager_id' => $request->project_manager_id,
                             'project_name' => $request->project_name,
+                            'slug' => str_replace(' ','-',strtolower($request->project_name)).'-'.date('is'),
                             'open_date' => Carbon::parse($request->open_date)->format('Y-m-d'),
                             'close_date' => Carbon::parse($request->close_date)->format('Y-m-d'),
                             'project_value' => $request->project_value,
