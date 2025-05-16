@@ -58,6 +58,7 @@
                     processing: true,
                     serverSide: true,
                     ajax: "{{ route('project-activity-logs.index') }}",
+                    pageLength: 50,
                     columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                         {data: 'user.name', name: 'user.name'},

@@ -77,7 +77,7 @@
             <form class="row g-3" action="{{route('modules.store')}}" method="POST">
                 @csrf
                 <div class="col-md-12">
-                    <label class="form-label" for="project_phase_id">Project Phase</label>
+                    <label class="form-label" for="project_phase_id">Project Phase <span class="text-danger">*</span></label>
                     <select class="form-select server-side-select project_phase_id" name="project_phase_id" required>
                         <option value="0">Select Phase</option>
                     </select>

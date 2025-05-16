@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Traits\ProjectLogActivity;
+use Illuminate\Support\Facades\DB;
 use App\Models\ProjectPlan;
 use Carbon\Carbon;
 use DataTables;
@@ -54,6 +55,7 @@ class ProjectPlanController extends Controller
                 'end_date' => 'nullable',
                 'current_status' => 'required|in:On Hold,To Do,In Progress,Testing,Completed,Error Solving',
             ]);
+            DB::beginTransaction();
             ProjectPlan::create([
                             'project_module_id' => $request->project_module_id,
                             'project_phase_id' => $request->project_phase_id,
@@ -68,10 +70,12 @@ class ProjectPlanController extends Controller
                             'current_status' => $request->current_status,
                         ]);
 
-            $this->addLog(auth()->id(),$request->project_id,$request->project_module_id,$request->task_name.' has been created');
+            $this->addLog(auth()->id(),$request->project_id,$request->project_module_id,$request->task_name.' has been created '.auth()->user()->name);
 
+            DB::commit();
             return redirect()->back()->with('success', 'Added Successfully.');
         } catch (\Exception $e) {
+            DB::rollBack();
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -95,6 +99,7 @@ class ProjectPlanController extends Controller
                 'end_date' => 'nullable',
                 'current_status' => 'required|in:On Hold,To Do,In Progress,Testing,Completed,Error Solving',
             ]);
+            DB::beginTransaction();
             $plan = ProjectPlan::find($id);
             $plan->update([
                             'employee_id' => $request->employee_id,
@@ -109,8 +114,10 @@ class ProjectPlanController extends Controller
 
             $this->addLog(auth()->id(),$plan->project_id,$plan->project_module_id,$plan->task_name.' has been updated by '.auth()->user()->name);
             
+            DB::commit();
             return redirect()->back()->with('success', 'Updated Successfully.');
         } catch (\Exception $e) {
+            DB::rollBack();
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -118,12 +125,15 @@ class ProjectPlanController extends Controller
     public function destroy(Request $request)
     {
         try {
-            $projectType = ProjectPlan::find($request->id);
-            $projectType->delete();
+            DB::beginTransaction();
+            $plan = ProjectPlan::find($request->id);
 
             $this->addLog(auth()->id(),$plan->project_id,$plan->project_module_id,$plan->task_name.' has been removed by '.auth()->user()->name);
+            $plan->delete();
+            DB::commit();
             return response()->json(['success' => true]);
         } catch (\Exception $e) {
+            DB::rollBack();
             return response()->json(['error' => $e->getMessage()]);
         }
     }

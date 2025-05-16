@@ -103,8 +103,10 @@ class ProjectPhaseController extends Controller
     public function destroy(Request $request)
     {
         try {
-            $projectType = ProjectPhase::find($request->id);
-            $projectType->delete();
+            $phase = ProjectPhase::find($request->id);
+            if ($phase->projects()->count() == 0) {
+                $phase->delete();
+            }
             return response()->json(['success' => true]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);

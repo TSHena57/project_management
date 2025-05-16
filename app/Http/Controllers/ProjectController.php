@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Traits\ProjectLogActivity;
 use App\Models\Project;
 use App\Models\ProjectPlan;
 use App\Models\ProjectPhase;
@@ -14,6 +15,8 @@ use DataTables;
 
 class ProjectController extends Controller
 {
+    use ProjectLogActivity;
+    
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -74,6 +77,8 @@ class ProjectController extends Controller
                                 'project_type_id' => $request->project_type_id,
                                 'awarded_by' => $request->awarded_by,
                             ]);
+
+            $this->addLog(auth()->id(),$project->id,0,$request->project_name.' has been created as A NEW Project by '.auth()->user()->name);
             
             DB::commit();
             
@@ -126,6 +131,8 @@ class ProjectController extends Controller
                             'awarded_by' => $request->awarded_by,
                             'project_type_id' => $request->project_type_id,
                         ]);
+
+            $this->addLog(auth()->id(),$project->id,0,$request->project_name.' has been created as A NEW Project by '.auth()->user()->name);
             
             DB::commit();
             return redirect()->route('projects.show', $project->id)->with('success', 'Updated Successfully.');
@@ -138,9 +145,22 @@ class ProjectController extends Controller
     public function destroy(Request $request)
     {
         try {
-            $employee = Project::with(['user'])->find($request->id);
+            DB::beginTransaction();
+            $project = Project::with(['project_plans'])->find($request->id);
+            if ($project->project_plans()->count() > 0) {
+                $this->addLog(auth()->id(),$project->id,0,auth()->user()->name.' has tried to DELETE the '.$project->project_name);
+                DB::commit();
+                return response()->json(['success' => true]);
+            }
+            $project->project_plans()->delete();
+            $project->project_teams()->delete();
+            $project->project_modules()->delete();
+            $this->addLog(auth()->id(),$project->id,0,$project->project_name.' has been deleted by '.auth()->user()->name);
+            $project->delete();
+            DB::commit();
             return response()->json(['success' => true]);
         } catch (\Exception $e) {
+            DB::rollBack();
             return response()->json(['error' => $e->getMessage()]);
         }
     }

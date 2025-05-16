@@ -19,6 +19,6 @@ class ActivityLog extends Model
 
     public function project_module()
     {
-        return $this->belongsTo(ProjectModule::class,'project_module_id','id')->withDefault();
+        return $this->belongsTo(ProjectModule::class,'project_module_id','id')->withDefault(['module_name'=>'n/a']);
     }
 }
