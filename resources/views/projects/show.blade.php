@@ -185,7 +185,7 @@
                                 <th style="padding-left: 20px; vertical-align: middle;">
                                     <button type="button" class="btn btn-sm btn-outline-warning module_info" data-route="{{route('modules.edit', $module->id)}}">Module {{$k+1}}: {{ $module->module_name }}  <i class="lni lni-pencil"></i></button>
                                 </th>
-                                <th colspan="5" width="70%" style="text-align: justify;">
+                                <th colspan="6" width="70%" style="text-align: justify;">
                                     {{ $module->description }}
                                 </th>
                             </tr>
@@ -194,6 +194,7 @@
                                 <th style="padding-left: 40px;">Task Name</th>
                                 <th>Assigned To</th>
                                 <th>Added By</th>
+                                <th>Priority</th>
                                 <th>Duration</th>
                                 <th width="10%">Status</th>
                                 <th width="10%">Action</th>
@@ -218,6 +219,15 @@
                                             {{ $task->creator->name }}
                                         </div>
                                     </td>
+                                    <td>
+                                        @if ($task->priority == 1)
+                                            <span class="badge bg-primary">LOW</span>
+                                        @elseif($task->priority == 2)
+                                            <span class="badge bg-warning">MEDIUM</span>
+                                        @else
+                                            <span class="badge bg-error">TOP</span>
+                                        @endif
+                                    </td>
                                     <td><span class="badge bg-primary">{{ $task->task_duration_hrs }} Hrs</span></td>
                                     <td>{{ $task->current_status }}</td>
                                     <td>
@@ -227,11 +237,11 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6" class="text-center">No tasks found under this module.</td>
+                                    <td colspan="7" class="text-center">No tasks found under this module.</td>
                                 </tr>
                             @endforelse
                             <tr>
-                                <td colspan="6" class="text-end">
+                                <td colspan="7" class="text-end">
                                     <div class="accordion" id="module{{$module->id}}">
                                         <div class="accordion-item">
                                             <div class="row">

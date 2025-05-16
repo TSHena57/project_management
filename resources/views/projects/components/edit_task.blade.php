@@ -11,7 +11,11 @@
                 <div class="col-md-4">
                     <label class="form-label" for="employee_id">Team Member <span class="text-danger">*</span></label>
                     <select class="form-select server-side-select employee_id" name="employee_id" required>
-                        <option value="0">Select Member</option>
+                        @if ($plan->employee_id > 0)
+                            <option value="{{$plan->employee_id}}">{{$plan->employee->user->name}}</option>
+                        @else
+                            <option value="0">Select Member</option>
+                        @endif
                     </select>
                 </div>
                 <div class="col-md-4">

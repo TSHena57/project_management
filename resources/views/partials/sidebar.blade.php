@@ -37,6 +37,7 @@
                    </div>
                 </div>
                 <a href="{{route('dashboard')}}" class="list-group-item"><i class="lni lni-dashboard"></i>Summary</a>
+                <a href="{{route('project-activity-logs.index')}}" class="list-group-item"><i class="lni lni-dashboard"></i>Project Logs</a>
              </div>
           </div>
           <div class="tab-pane fade" id="pills-task">
@@ -56,6 +57,7 @@
                       <h5 class="mb-0">Leads</h5>
                    </div>
                 </div>
+                <a href="{{route('lead.client_create')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Create Client</a>
                 <a href="{{route('lead.active_client')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Active Client</a>
                 <a href="{{route('lead.inactive_client')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>In-Active Client</a>
              </div>
@@ -67,9 +69,10 @@
                       <h5 class="mb-0">Human Resource</h5>
                    </div>
                 </div>
+                <a href="{{route('employee.create')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Create Employee</a>
+                <a href="{{route('employee.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Employee</a>
                 <a href="{{route('designation.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Designation</a>
                 <a href="{{route('department.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Department</a>
-                <a href="{{route('employee.index')}}" class="list-group-item"><i class="lni lni-arrow-right"></i>Employee</a>
              </div>
           </div>
           <div class="tab-pane fade {{Route::is('projects.*') || Route::is('type.*') || Route::is('phase.*')  ? 'active show' : ''}}" id="pills-projects">

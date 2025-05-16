@@ -13,6 +13,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTeamController;
 use App\Http\Controllers\ProjectModuleController;
 use App\Http\Controllers\ProjectPlanController;
+use App\Http\Controllers\ActivityLogController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'welcome')->name('welcome');
@@ -104,5 +105,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('edit/{id}', 'edit')->name('project_plan.edit');
         Route::post('project_plan/{id}', 'update')->name('project_plan.update');
         Route::post('remove', 'destroy')->name('project_plan.remove');
+    });
+    Route::controller(ActivityLogController::class)->prefix('project-activity-logs/')->group(function () {
+        Route::get('list', 'index')->name('project-activity-logs.index');
+        Route::post('delete', 'destroy')->name('project-activity-logs.delete');
     });
 });

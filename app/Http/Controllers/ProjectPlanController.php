@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Traits\ProjectLogActivity;
 use App\Models\ProjectPlan;
 use Carbon\Carbon;
 use DataTables;
 
 class ProjectPlanController extends Controller
 {
+    use ProjectLogActivity;
+
     public function list_for_select_ajax(Request $request)
     {
         $items = ProjectPlan::query();
@@ -64,7 +67,9 @@ class ProjectPlanController extends Controller
                             'priority' => $request->priority,
                             'current_status' => $request->current_status,
                         ]);
-            
+
+            $this->addLog(auth()->id(),$request->project_id,$request->project_module_id,$request->task_name.' has been created');
+
             return redirect()->back()->with('success', 'Added Successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
@@ -90,8 +95,8 @@ class ProjectPlanController extends Controller
                 'end_date' => 'nullable',
                 'current_status' => 'required|in:On Hold,To Do,In Progress,Testing,Completed,Error Solving',
             ]);
-            $phase = ProjectPlan::find($id);
-            $phase->update([
+            $plan = ProjectPlan::find($id);
+            $plan->update([
                             'employee_id' => $request->employee_id,
                             'task_name' => $request->task_name,
                             'task_details' => $request->task_details,
@@ -101,6 +106,8 @@ class ProjectPlanController extends Controller
                             'priority' => $request->priority,
                             'current_status' => $request->current_status,
                         ]);
+
+            $this->addLog(auth()->id(),$plan->project_id,$plan->project_module_id,$plan->task_name.' has been updated by '.auth()->user()->name);
             
             return redirect()->back()->with('success', 'Updated Successfully.');
         } catch (\Exception $e) {
@@ -113,6 +120,8 @@ class ProjectPlanController extends Controller
         try {
             $projectType = ProjectPlan::find($request->id);
             $projectType->delete();
+
+            $this->addLog(auth()->id(),$plan->project_id,$plan->project_module_id,$plan->task_name.' has been removed by '.auth()->user()->name);
             return response()->json(['success' => true]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
