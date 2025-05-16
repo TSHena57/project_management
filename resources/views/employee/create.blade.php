@@ -24,7 +24,7 @@
                    <form class="row g-3" action="{{route('employee.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-6">
-                            <label class="form-label" for="department_id">Department</label>
+                            <label class="form-label" for="department_id">Department <span class="text-danger">*</span></label>
                             <select class="form-select single-select" id="department_id" name="department_id" required>
                                 @foreach ($departments as $department)
                                     <option value="{{$department->id}}">{{$department->name}}</option>
@@ -32,7 +32,7 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label" for="designation_id">Designation</label>
+                            <label class="form-label" for="designation_id">Designation <span class="text-danger">*</span></label>
                             <select class="form-select single-select" id="designation_id" name="designation_id" required>
                                 @foreach ($designations as $designation)
                                     <option value="{{$designation->id}}">{{$designation->name}}</option>
@@ -40,7 +40,7 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label" for="name">Full Name</label>
+                            <label class="form-label" for="name">Full Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="name" id="name" value="">
                         </div>
                         <div class="col-md-6">
@@ -48,11 +48,11 @@
                             <input type="text" class="form-control" name="employee_id" id="employee_id" value="">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label" for="email">Email</label>
+                            <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
                             <input type="email" class="form-control" name="email" id="email" value="">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label" for="password">Password</label>
+                            <label class="form-label" for="password">Password <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="password" id="password" value="{{date('dYm')}}">
                         </div>
                         <div class="col-md-6">

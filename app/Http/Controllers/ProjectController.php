@@ -53,7 +53,7 @@ class ProjectController extends Controller
         try {
             $request->validate([
                 'client_id' => 'required|numeric|gt:0',
-                'project_manager_id' => 'nullable|numeric|gt:0',
+                'project_manager_id' => 'nullable|numeric|min:0',
                 'project_name' => 'required|string',
                 'open_date' => 'nullable',
                 'close_date' => 'nullable',
@@ -108,7 +108,7 @@ class ProjectController extends Controller
         try {
             $request->validate([
                 'client_id' => 'required|numeric|gt:0',
-                'project_manager_id' => 'nullable|numeric|gt:0',
+                'project_manager_id' => 'nullable|numeric|min:0',
                 'project_name' => 'required|string',
                 'open_date' => 'nullable',
                 'close_date' => 'nullable',

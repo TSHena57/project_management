@@ -31,12 +31,12 @@
                    <form class="row g-3" action="{{route('lead.client_store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
-                            <label class="form-label" for="name">Full Name</label>
-                            <input type="text" class="form-control" name="name" id="name" value="">
+                            <label class="form-label" for="name">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="name" id="name" value="" required>
                         </div>
                         <div class="col-md-12">
-                            <label class="form-label" for="email">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" value="">
+                            <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" name="email" id="email" value="" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="mobile">Mobile</label>

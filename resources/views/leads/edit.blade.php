@@ -24,11 +24,11 @@
                    <form class="row g-3" action="{{route('lead.update', $client->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
-                            <label class="form-label" for="name">Full Name</label>
+                            <label class="form-label" for="name">Full Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="name" id="name" value="{{$client->user->name}}">
                         </div>
                         <div class="col-md-12">
-                            <label class="form-label" for="email">Email</label>
+                            <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
                             <input type="email" class="form-control" name="email" id="email" value="{{$client->user->email}}">
                         </div>
                         <div class="col-md-6">

@@ -1,4 +1,11 @@
 @extends('layouts.app')
+@push('styles')
+    <style>
+        textarea.form-control {
+            min-height: calc(1.5em + 11.75rem + 2px);
+        }
+    </style>
+@endpush
 @section('content')
 <!--breadcrumb-->
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -24,13 +31,13 @@
                    <form class="row g-3" action="{{route('projects.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-6">
-                            <label class="form-label" for="client_id">Client</label>
+                            <label class="form-label" for="client_id">Client <span class="text-danger">*</span></label>
                             <select class="form-select server-side-select" id="client_id" name="client_id" required>
                                 <option value="0">Select Client</option>
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label" for="project_type_id">Project Type</label>
+                            <label class="form-label" for="project_type_id">Project Type <span class="text-danger">*</span></label>
                             <select class="form-select single-select" id="project_type_id" name="project_type_id" required>
                                 @foreach ($types as $type)
                                     <option value="{{$type->id}}">{{$type->name}}</option>
@@ -44,12 +51,12 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label" for="project_name">Project Name</label>
-                            <input type="text" class="form-control" name="project_name" id="project_name" value="">
+                            <label class="form-label" for="project_name">Project Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="project_name" id="project_name" value="" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label" for="project_value">Project Value</label>
-                            <input type="number" class="form-control" name="project_value" id="project_value" step="0.01" value="0.00">
+                            <label class="form-label" for="project_value">Project Value <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" name="project_value" id="project_value" step="0.01" value="0.00" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="project_current_status">Current Status</label>
