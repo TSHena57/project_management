@@ -90,7 +90,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="close_date">Close Date (Est.)</label>
-                            <input type="date" class="form-control" name="close_date" id="close_date" value="{{$project->close_date ? $project->close_date : ''}}">
+                            <input type="date" class="form-control" name="close_date" id="close_date" value="{{$project->close_date ? $project->close_date : date('Y-m-d')}}">
                         </div>
                         <div class="col-md-12">
                             <label class="form-label">Description</label>

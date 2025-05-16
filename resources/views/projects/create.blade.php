@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="close_date">Close Date (Est.)</label>
-                            <input type="date" class="form-control" name="close_date" id="close_date" value="">
+                            <input type="date" class="form-control" name="close_date" id="close_date" value="{{date('Y-m-d')}}">
                         </div>
                         <div class="col-md-12">
                             <label class="form-label">Description</label>
