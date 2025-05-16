@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('slug',255)->index();
             $table->date('open_date')->default(date("Y-m-d"))->index();
             $table->date('close_date')->default(date("Y-m-d"))->index();
-            $table->double('project_value', 20,2)->default(0)->index();
+            $table->double('project_value', 16,2)->default(0)->index();
             $table->text('description')->nullable();
             $table->enum('project_current_status',['Not Started','On Hold','Planning','In Progress','Running','Completed','Cancelled','At Risk','Failed'])->default('Not Started');
             $table->string('awarded_by',255)->nullable()->comment('the man who brought the project');
