@@ -28,7 +28,7 @@ class ProjectTeamController extends Controller
                             'join_date' => Carbon::parse($request->join_date)->format('Y-m-d'),
                         ]);
             
-            $this->addLog(auth()->id(),$request->project_id,0,$team->employee->user->name.' has been added by '.auth()->user()->name);
+            $this->addLog(auth()->id(),$request->project_id,0,$team->employee->user->name.' has been added into TEAM by '.auth()->user()->name);
             
             DB::commit();
             return redirect()->back()->with('success', 'Added Successfully.');
@@ -44,7 +44,7 @@ class ProjectTeamController extends Controller
             $team = ProjectTeam::find($request->id);
             DB::beginTransaction();
             
-            $this->addLog(auth()->id(),$team->project_id,0,$team->employee->user->name.' has been removed by '.auth()->user()->name);
+            $this->addLog(auth()->id(),$team->project_id,0,$team->employee->user->name.' has been removed From TEAM by '.auth()->user()->name);
             $team->delete();
             
             DB::commit();
